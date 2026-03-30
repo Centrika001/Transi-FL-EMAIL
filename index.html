@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudio de Investigaci&oacute;n &mdash; Centrika Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Montserrat', Arial, sans-serif; background: #f8f9fa; color: #1a1a1a; -webkit-font-smoothing: antialiased; }
+
+  /* Flag stripe top */
+  .flag-stripe { height: 6px; background: linear-gradient(90deg, #002D62 0%, #002D62 33%, #CE1126 33%, #CE1126 66%, #002D62 66%, #002D62 100%); }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #002D62 0%, #001a3d 100%);
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -60%; left: -30%; width: 160%; height: 160%;
+    background: radial-gradient(circle, rgba(206,17,38,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 24px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .hero h1 .flag { font-size: 36px; display: block; margin-bottom: 8px; }
+  .hero .subtitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #CE1126;
+    margin-bottom: 8px;
+  }
+  .hero .sub2 {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    max-width: 320px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* Main content */
+  .content { max-width: 480px; margin: 0 auto; padding: 0 20px; }
+
+  /* Compensation card */
+  .comp-card {
+    background: linear-gradient(135deg, #CE1126 0%, #a80d1f 100%);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    margin: -20px 20px 24px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 8px 32px rgba(206,17,38,0.3);
+  }
+  .comp-card .amount {
+    font-size: 42px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+  }
+  .comp-card .amount-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    margin-top: 4px;
+  }
+  .comp-card .bonus {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.25);
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 600;
+  }
+  .comp-card .bonus span { color: #FFD700; font-weight: 700; }
+
+  /* Details grid */
+  .details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .detail-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .detail-card .icon { font-size: 28px; margin-bottom: 6px; }
+  .detail-card .label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 600; margin-bottom: 2px; }
+  .detail-card .value { font-size: 15px; font-weight: 700; color: #002D62; }
+
+  /* Requirements */
+  .req-section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .req-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #002D62;
+    margin-bottom: 16px;
+  }
+  .req-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .req-item:last-child { border-bottom: none; }
+  .req-check {
+    width: 28px; height: 28px;
+    background: #e8f5e9;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .req-text { font-size: 14px; font-weight: 500; color: #333; }
+
+  /* About section */
+  .about-section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .about-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #002D62;
+    margin-bottom: 12px;
+  }
+  .about-section p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #555;
+  }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    padding: 8px 0 32px;
+  }
+  .cta-btn {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 12px;
+    padding: 18px 24px;
+    background: linear-gradient(135deg, #CE1126 0%, #a80d1f 100%);
+    color: #fff;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(206,17,38,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+    letter-spacing: 0.3px;
+  }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(206,17,38,0.45); }
+  .cta-btn:active { transform: translateY(0); }
+  .cta-spots {
+    font-size: 13px;
+    font-weight: 600;
+    color: #CE1126;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+  /* Referral banner */
+  .referral {
+    background: linear-gradient(135deg, #002D62, #001a3d);
+    border-radius: 16px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .referral p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.5;
+  }
+  .referral .ref-amount { color: #FFD700; font-weight: 700; font-size: 16px; }
+
+  /* Trust badges */
+  .trust {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #888;
+    font-weight: 500;
+  }
+  .trust-item .t-icon { font-size: 16px; }
+
+  /* Footer */
+  .footer {
+    background: #002D62;
+    padding: 24px;
+    text-align: center;
+  }
+  .footer .brand {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .footer .brand-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 12px;
+  }
+  .footer .legal {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+  }
+
+  /* Responsive */
+  @media (min-width: 520px) {
+    .hero h1 { font-size: 40px; }
+    .hero .subtitle { font-size: 20px; }
+    .comp-card .amount { font-size: 48px; }
+    .comp-card { margin: -20px 0 24px; }
+  }
+
+  /* English toggle */
+  .lang-toggle {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+    z-index: 10;
+  }
+  .lang-toggle:hover { background: rgba(255,255,255,0.2); }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="flag-stripe"></div>
+
+<!-- ===== SPANISH VERSION ===== -->
+<div id="es">
+
+<div class="hero">
+  <a href="#" class="lang-toggle" onclick="toggleLang(); return false;">EN | English</a>
+  <div class="hero-badge">Centrika Research</div>
+  <h1>
+    <span class="flag">&#x1F1E9;&#x1F1F4;</span>
+    &#191;Eres dominicano/a<br>en Florida?
+  </h1>
+  <div class="subtitle">Estudio de investigaci&#243;n pagado</div>
+  <div class="sub2">Tu experiencia y tu voz importan. Buscamos personas de origen dominicano para compartir su perspectiva.</div>
+</div>
+
+<div class="content">
+  <div class="comp-card">
+    <div class="amount">$50</div>
+    <div class="amount-label">Compensaci&#243;n por tu participaci&#243;n</div>
+    <div class="bonus">&#127873; Gana <span>$25 extra</span> por cada persona que refieras y participe</div>
+  </div>
+
+  <div class="details">
+    <div class="detail-card">
+      <div class="icon">&#128197;</div>
+      <div class="label">Cu&#225;ndo</div>
+      <div class="value">Semana del<br>30 de abril</div>
+    </div>
+    <div class="detail-card">
+      <div class="icon">&#9202;</div>
+      <div class="label">Duraci&#243;n</div>
+      <div class="value">2 horas</div>
+    </div>
+    <div class="detail-card">
+      <div class="icon">&#128205;</div>
+      <div class="label">D&#243;nde</div>
+      <div class="value">En persona<br>&#193;rea de Miami</div>
+    </div>
+    <div class="detail-card">
+      <div class="icon">&#128172;</div>
+      <div class="label">Qu&#233;</div>
+      <div class="value">Conversaci&#243;n<br>grupal</div>
+    </div>
+  </div>
+
+  <div class="req-section">
+    <h3>Para participar necesitas:</h3>
+    <div class="req-item">
+      <div class="req-check">&#10003;</div>
+      <div class="req-text">Tener 18 a&#241;os o m&#225;s</div>
+    </div>
+    <div class="req-item">
+      <div class="req-check">&#10003;</div>
+      <div class="req-text">Ser de origen dominicano</div>
+    </div>
+    <div class="req-item">
+      <div class="req-check">&#10003;</div>
+      <div class="req-text">Vivir en el &#225;rea de Florida (Miami-Dade o Broward)</div>
+    </div>
+    <div class="req-item">
+      <div class="req-check">&#10003;</div>
+      <div class="req-text">Estar disponible la semana del 30 de abril</div>
+    </div>
+  </div>
+
+  <div class="about-section">
+    <h3>Sobre el estudio</h3>
+    <p>Centrika Research est&#225; conduciendo un estudio sobre la experiencia de la comunidad dominicana en Florida. Queremos escuchar tu historia, tus opiniones y tus vivencias. No hay respuestas correctas ni incorrectas &#8212; solo buscamos tu perspectiva honesta.</p>
+  </div>
+
+  <div class="cta-section">
+    <a href="https://centrika.10survey.us/zs/u6CZWH" class="cta-btn" target="_blank" rel="noopener">Reg&#237;strate ahora</a>
+    <div class="cta-spots">&#9888;&#65039; Espacio limitado &#8212; no te quedes fuera</div>
+  </div>
+
+  <div class="referral">
+    <p>&#191;Conoces a alguien que pueda estar interesado/a?<br>Comparte esta p&#225;gina y gana <span class="ref-amount">$25</span> por cada persona referida que participe.</p>
+  </div>
+
+  <div class="trust">
+    <div class="trust-item"><span class="t-icon">&#128274;</span> Confidencial</div>
+    <div class="trust-item"><span class="t-icon">&#9989;</span> Leg&#237;timo</div>
+    <div class="trust-item"><span class="t-icon">&#128101;</span> Sin compromiso</div>
+  </div>
+</div>
+
+</div><!-- /es -->
+
+<!-- ===== ENGLISH VERSION ===== -->
+<div id="en" class="hidden">
+
+<div class="hero">
+  <a href="#" class="lang-toggle" onclick="toggleLang(); return false;">ES | Espa&#241;ol</a>
+  <div class="hero-badge">Centrika Research</div>
+  <h1>
+    <span class="flag">&#x1F1E9;&#x1F1F4;</span>
+    Are you Dominican-American<br>in Florida?
+  </h1>
+  <div class="subtitle">Paid research study</div>
+  <div class="sub2">Your experience and voice matter. We&#8217;re looking for people of Dominican origin to share their perspective.</div>
+</div>
+
+<div class="content">
+  <div class="comp-card">
+    <div class="amount">$50</div>
+    <div class="amount-label">Compensation for your participation</div>
+    <div class="bonus">&#127873; Earn <span>$25 extra</span> for each person you refer who participates</div>
+  </div>
+
+  <div class="details">
+    <div class="detail-card">
+      <div class="icon">&#128197;</div>
+      <div class="label">When</div>
+      <div class="value">Week of<br>April 30</div>
+    </div>
+    <div class="detail-card">
+      <div class="icon">&#9202;</div>
+      <div class="label">Duration</div>
+      <div class="value">2 hours</div>
+    </div>
+    <div class="detail-card">
+      <div class="icon">&#128205;</div>
+      <div class="label">Where</div>
+      <div class="value">In-person<br>Miami area</div>
+    </div>
+    <div class="detail-card">
+      <div class="icon">&#128172;</div>
+      <div class="label">What</div>
+      <div class="value">Group<br>conversation</div>
+    </div>
+  </div>
+
+  <div class="req-section">
+    <h3>To participate you must:</h3>
+    <div class="req-item">
+      <div class="req-check">&#10003;</div>
+      <div class="req-text">Be 18 years or older</div>
+    </div>
+    <div class="req-item">
+      <div class="req-check">&#10003;</div>
+      <div class="req-text">Be of Dominican origin</div>
+    </div>
+    <div class="req-item">
+      <div class="req-check">&#10003;</div>
+      <div class="req-text">Live in the Florida area (Miami-Dade or Broward)</div>
+    </div>
+    <div class="req-item">
+      <div class="req-check">&#10003;</div>
+      <div class="req-text">Be available the week of April 30</div>
+    </div>
+  </div>
+
+  <div class="about-section">
+    <h3>About the study</h3>
+    <p>Centrika Research is conducting a study about the Dominican community&#8217;s experience in Florida. We want to hear your story, your opinions, and your experiences. There are no right or wrong answers &#8212; we just want your honest perspective.</p>
+  </div>
+
+  <div class="cta-section">
+    <a href="https://centrika.10survey.us/zs/lBDF3L" class="cta-btn" target="_blank" rel="noopener">Sign up now</a>
+    <div class="cta-spots">&#9888;&#65039; Limited spots &#8212; don&#8217;t miss out</div>
+  </div>
+
+  <div class="referral">
+    <p>Know someone who might be interested?<br>Share this page and earn <span class="ref-amount">$25</span> for each person you refer who participates.</p>
+  </div>
+
+  <div class="trust">
+    <div class="trust-item"><span class="t-icon">&#128274;</span> Confidential</div>
+    <div class="trust-item"><span class="t-icon">&#9989;</span> Legitimate</div>
+    <div class="trust-item"><span class="t-icon">&#128101;</span> No strings attached</div>
+  </div>
+</div>
+
+</div><!-- /en -->
+
+<div class="footer">
+  <div class="brand">CENTRIKA RESEARCH</div>
+  <div class="brand-sub">centrika.us</div>
+  <div class="legal">Estudio confidencial. Tu informaci&#243;n est&#225; protegida.<br>Confidential study. Your information is protected.</div>
+</div>
+
+<script>
+function toggleLang() {
+  document.getElementById('es').classList.toggle('hidden');
+  document.getElementById('en').classList.toggle('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
